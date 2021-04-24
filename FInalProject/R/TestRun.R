@@ -17,23 +17,24 @@ pkgTest <- function(x) {
 packages <- c("aod", "dplyr", "forestmangr", "ggplot2")
 lapply(packages, pkgTest)
 
-#data <- read.csv2(file=url("https://raw.githubusercontent.com/blaira1/FinalProject/main/data/cbb.csv")) **set working directory to location of saved .csv file**
+data <- read.csv("cbb.csv")
 
 
 #saved as separate R script file
 cleandata <- function(x){
-  x <- na.omit(x) #remove all unknowns 
+  x <- na.omit(x) #remove all unknowns
   x <- round_df(x, digits = 2) #round to nearest tenths
 }
 
-
-teamrating <- function(x, y, z){ #x=Offensive Efficiency, y=Defensive Efficiency, z=Power Rating
-  w <- (x + y)/100 #theoretical team efficiency
-  v <- w/z #team efficiency/power rating
+#Team Rating; x=Offensive Efficiency, y=Defensive Efficiency, z=Power Rating
+teamrating <- function(x, y, z){
+  w <- (x + y)/100
+  v <- w/z
   return(v)
-}  
+}
 
-winrate <- function(x,y){ #x-games won, y=games played
+#winrate; x-games won, y=games played
+winrate <- function(x,y){
   return(x/y)
 }
 
